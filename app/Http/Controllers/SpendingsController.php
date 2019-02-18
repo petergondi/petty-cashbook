@@ -7,6 +7,7 @@ use App\Accounts;
 use App\Spendings;
 use Carbon\Carbon;
 use App\Topup;
+use PDF;
 use Illuminate\Support\Facades\Input;
 
 
@@ -50,18 +51,26 @@ class SpendingsController extends Controller
         $weekday = $weekMap[$dayOfTheWeek];
         $total_topup=Topup::sum('topup');
         $total_expense=Spendings::sum('expense_amount');
-        $balance=$total_topup-$total_expense;
+        $balance=$total_topup;
         $expense_accounts=Accounts::All();
         $count= $expense_accounts->count();
         return view('Spendings.base')->with(compact('expense_accounts','total_topup','weekday','now','balance'));
        
     }
+    //
     public function ReadData(){
         $total_topup=Topup::sum('topup');
         $total_expense=Spendings::sum('expense_amount');
         $balance=$total_topup-$total_expense;
         return response($balance);
     }
+    public function downloadPDF(){
+        $data = ['title' => 'Welcome to HDTuto.com'];
+        $pdf = PDF::loadView('pdf', $data);
+  
+        return $pdf->download('itsolutionstuff.pdf');
+  
+      }
 
     /**
      * Store a newly created resource in storage.

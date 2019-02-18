@@ -29,5 +29,10 @@ Route::post('/reports/display','ReportsController@displayReport');
 Route::get('/charts/display','ChartController@charts')->name('charts.display');
 Route::delete('/topup/delete/{id}', 'TopupController@destroy');
 Route::delete('/spending/delete/{id}', 'SpendingsController@destroy');
+Route::get('/spending/downloadPDF','SpendingsController@downloadPDF')->name('spending.downloadPDF');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

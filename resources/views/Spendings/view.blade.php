@@ -9,29 +9,7 @@
       <h1>
         Spending Management
       </h1>
-    </section>   
-    <!--modal content-->
-    <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-    <!--end modal content--> 
+    </section>    
       @include('partials.message')
 <div class="product-status mg-b-30">
         <div class="container-fluid">
@@ -39,9 +17,23 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="product-status-wrap">
                         <h4>Spendings</h4>
-     <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModalCenter">
-  Export
-</button>
+                        <p>Generate Report</p>
+                        <form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+     <label for="staticEmail2" style="color:white; " >From</label>
+    <input type="text" class="form-control" id="date" placeholder="yy/mm/dd">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+     <label for="staticEmail2" style="color:white; " >To</label>
+    <input type="text" class="form-control" id="date1" placeholder="yy/mm/dd">
+  </div>
+       <div class="dropdown form-group mx-sm-3 mb-2">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">PDF
+</div>
+<div class="dropdown form-group mx-sm-3 mb-2">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">XLS
+</div>
+</form>
                         <div class="col-lg-3 col-md-5 col-sm-3 col-xs-12">
                             <div class="header-top-menu tabl-d-n hd-search-rp">
                                 <div class="breadcome-heading">
@@ -60,9 +52,9 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="input-group">
                                                 <div class="input-group-btn custom-dropdowns-button">
-                                                    <select id="inputtype"  data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button" aria-expanded="false">Action <span class="caret"></span>
+                                                    <select id="inputtype"  data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button" aria-expanded="false"><span class="caret"></span>
                                                         <ul class="dropdown-menu">
-                                                            <option selected>Choose...</option>
+                                                            <option selected>Filter</option>
                                                                     <option value="date">Date</option>
                                                                     <option value="expense">Expense</option>
                                                                     <option value="person_given">Person Given
@@ -70,7 +62,7 @@
                                                                 </ul>
                                                     </select>
                                                 </div>
-                                                <input type="text" placeholder="filter search" id="search" class="form-control">
+                                                <input type="text" placeholder=" search" id="search" class="form-control">
                                                 
                                             </div>
                                         </div>
@@ -88,6 +80,7 @@
                             </tr>
                             @foreach($spendings as $spend)
                             <tr>
+                           
                             <td>{{$spend->expense_name}}</td>
                             <td>{{$spend->created_at->format('d/m/Y')}}</td>
                             @if($spend->person_given==null)
@@ -144,11 +137,13 @@
             </div>
         </div>
     </div>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-               crossorigin="anonymous">
-      </script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    
+    
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
     <script type="text/javascript">
     $(document).ready(function() {
  
@@ -214,6 +209,15 @@
 
         
     });
+      var options={
+            format: 'mm/dd/yyyy',
+            todayHighlight: true,
+            autoclose: true,
+          orientation: 'top auto'
+        };
+
+    $('#date').datepicker(options);
+    $('#date1').datepicker(options);
         </script>
          
         <script type="text/javascript">

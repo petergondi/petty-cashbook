@@ -82,21 +82,21 @@
                                                         <input type="text" name="purpose[]"  class="form-control" required/>
                                                     </td>
                                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-                                                    <input type="text" name="person[]"   class="form-control" required/>
+                                                    <input type="text" name="person[]"   class="form-control input-sm" required/>
                                                     </td>
                                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                            <div class="form-check">
-                                                     <input class="form-check-input " type="checkbox" value="" id="defaultCheck1">
+                                                     <input class="form-check-input input-sm"  type="checkbox" value="" id="defaultCheck1">
                                                        
                                                      </div>
                                                     </td>
                                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                             <div class="input-group">
-                                                        <input type="text" name="amount[]" id="qty" class="form-control" required/>
+                                                        <input type="text" name="amount[]" id="qty" class="form-control input-sm" required/>
                                                         <span class="input-group-addon">.00</span>
                                                             </div>
                                                     </td>
-                                                  <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12"><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>
+                                                  <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12 input-sm"><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>
                                                     
                                                     </td>
                                                 </tr>
