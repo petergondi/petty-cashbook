@@ -15,7 +15,7 @@
                         <h4>Expense Accounts</h4>
                         <div class="row">
                                 <div class="col-sm-4 pull-right">
-                                        <a href="/admin/tasks/assign">
+                                <a href="{{route('account.create')}}">
                                     <button type="button" class="btn btn-info add-new "><i class="fa fa-plus"></i> Add New Expense Account</button>
                                         </a>
                                 </div>
@@ -33,9 +33,15 @@
                             @foreach($accounts as $account)
                             <tr>
                             <td>{{$account->account_name}}</td>
+                            @if(App\Spendings::where('expense_name',$account->account_name)->first())
                                 <td>
                                     <button class="pd-setting">Active</button>
                                 </td>
+                                @else
+                                <td>
+                                        <button class="btn">Inactive</button>
+                                    </td>
+                                @endif
                             <td>{{$account->account_description}}</td>
                                 <td>{{$account->surname}}</td>
                             <td>{{$account->created_at}}</td>

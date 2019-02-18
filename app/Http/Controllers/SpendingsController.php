@@ -79,24 +79,29 @@ class SpendingsController extends Controller
         $total_topup=Topup::sum('topup');
         $total_expense=Spendings::sum('expense_amount');
         $balance=$total_topup-$total_expense;
-     foreach($request->account as $key=>$account)
-        {
-            //$this->validate($request,[
-            //    'expense_name'=>'required',
-            //]);
-           
-           $data[] =[
-                     'expense_name' =>  $account,
-                     'purpose'=>$request->purpose[$key],
-                     'person_given'=>$request->person[$key],
-                     'expense_amount'=>$request->amount[$key],
-                     'closing_balance'=>$balance-array_sum($request->amount),
-                     'created_at'=>$now,
-                     'updated_at'=>$now,
-
-                    ];    
-                }            
- 
+       
+       
+        
+     
+    foreach($request->account as $key=>$account)
+       {
+           //$this->validate($request,[
+           //    'expense_name'=>'required',
+           //]);
+          //pushing expense amount into another array for deduction from the balance
+           $new_amounts[] =$request->amount[$key];
+          $data[] =[
+                    'expense_name' =>  $account,
+                    'purpose'=>$request->purpose[$key],
+                    'person_given'=>$request->person[$key],
+                    'expense_amount'=>$request->amount[$key],
+                    'closing_balance'=>$balance-array_sum($new_amounts), 
+                    'created_at'=>$now,
+                    'updated_at'=>$now,
+                   ];    
+                  
+               }   
+              
         Spendings::insert($data);
        // if (Spendings::insert($data)) {
        //     return response([
@@ -121,6 +126,94 @@ if($request->ajax())
 {
  
 $output="";
+if($request->select=="person_given"){
+    $expenses=Spendings::where('person_given','LIKE','%'.$request->search."%")->get();
+    if($expenses)
+    {
+        $output.='<tr>
+        <th>Expense Name</th>
+        <th>Date</th>
+        <th>Person Given.</th>
+        <th>Purpose</th>
+        <th>Amount Given(ksh.)</th>
+        <th>Closing Balance</th>
+        <th>Setting</th>
+    </tr>';
+     
+    foreach ($expenses as $key => $expense) {
+     
+    $output.='<tr>'.
+     
+    '<td>'.$expense->expense_name.'</td>'.
+    '<td>'.$expense->created_at->format('d/m/Y').'</td>'.
+     
+    '<td>'.$expense->purpose.'</td>'.
+     
+    '<td>'.$expense->person_given.'</td>'.
+     
+    '<td>'.$expense->expense_amount.'</td>'.
+    '<td>'.$expense->closing_balance.'</td>'.
+    '<td>'.
+        '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true">'.'</i></button>'.
+        '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true">'.'</i>'.'</button>'
+    .'</td>'.
+     
+    '</tr>';
+     
+    }
+    return Response($output);
+       }
+        else{
+        $output.='<tr>
+        <td align="center" colspan="5">No Data matches your Search</td>
+    </tr>';
+       }
+}
+ 
+if($request->select=="expense"){
+    $expenses=Spendings::where('expense_name','LIKE','%'.$request->search."%")->get();
+    if($expenses)
+    {
+        $output.='<tr>
+        <th>Expense Name</th>
+        <th>Date</th>
+        <th>Person Given.</th>
+        <th>Purpose</th>
+        <th>Amount Given(ksh.)</th>
+        <th>Closing Balance</th>
+        <th>Setting</th>
+    </tr>';
+     
+    foreach ($expenses as $key => $expense) {
+     
+    $output.='<tr>'.
+     
+    '<td>'.$expense->expense_name.'</td>'.
+    '<td>'.$expense->created_at->format('d/m/Y').'</td>'.
+     
+    '<td>'.$expense->purpose.'</td>'.
+     
+    '<td>'.$expense->person_given.'</td>'.
+     
+    '<td>'.$expense->expense_amount.'</td>'.
+    '<td>'.$expense->closing_balance.'</td>'.
+    '<td>'.
+        '<button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true">'.'</i></button>'.
+        '<button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true">'.'</i>'.'</button>'
+    .'</td>'.
+     
+    '</tr>';
+     
+    }
+    return Response($output);
+       }
+       else{
+        $output.='<tr>
+        <td align="center" colspan="5">No Data matches your Search</td>
+    </tr>';
+       }
+       
+}
  
 $expenses=Spendings::where('expense_name','LIKE','%'.$request->search."%")->orWhere('person_given','LIKE','%'.$request->search."%")->orWhere('created_at','LIKE','%'.$request->search."%")->get();
 if($expenses)
@@ -213,5 +306,8 @@ return Response($output);
     public function destroy($id)
     {
         //
+       
+        Spendings::find($id)->delete();
+        return response()->json(['response' => 'success']);
     }
 }

@@ -1,6 +1,7 @@
 @extends('Top-up.base')
 @section('actions-content')
 <br/>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="content-header text-center">
         <h1>
           Account Top Up
@@ -51,18 +52,27 @@
                                                         <td>{{$topup->topup}}</td>
                                                         <td>{{$topup->petty_cashier}}</td>
                                                             <td>
-                                                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                                <button data-toggle="tooltip" title="Edit"  class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                                <button data-toggle="tooltip" title="Trash" data-id="{{ $topup->id }}"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                                             </td>
                                                         </tr>
                                                         @endforeach
                                                         <tr class="bg-primary">
-                                                            <td>Total Top Up</td>
+                                                            <td id="result">Total Topup:{{$total_topup}}</td>
+                                                            <td id="cash">Cash:{{$cash}}</td>
+                                                            <td id="mpesa">Mpesa:{{$mpesa}}</td>
+                                                            <td id="bank">Bank:{{$bank}}</td>
                                                             <td></td>
-                                                            <td>{{$total_topup}}</td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            
                                                         </tr>
+                                                        
+                                                      
+                                                                       
+                                                                       
+                                                                  
+                                                                       
+                                                           
+                                                            
                                         </tbody>
                                     </table>
                                 <div class="custom-pagination">
@@ -77,5 +87,40 @@
             </div>
         </div>
     </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+      </script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+    $(".pd-setting-ed").click(function(){
+        var id = $(this).data("id");
+        var token = $("meta[name='csrf-token']").attr("content");
+        var tr = $(this).closest('tr');
+        $.ajax(
+        {
+            url: "/topup/delete/"+id,
+            type: 'DELETE',
+            dataType: "JSON",
+            data: {
+                "id": id,
+                "_method": 'DELETE',
+                "_token": token,
+            },
+            success: function (data)
+            {
+                tr.fadeOut(1000, function(){
+                        $(this).remove();
+                    });
+                    $('#result').text(data.total_topup);
+                    $('#mpesa').text(data.mpesa);
+                    $('#cash').text(data.cash);
+                    $('#bank').text(data.bank);
+            }
+        });
+
+        
+    });
+    </script>
     <!-- Static Table End -->
     @endsection

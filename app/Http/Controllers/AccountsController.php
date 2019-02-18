@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Accounts;
+use App\Spendings;
 
 class AccountsController extends Controller
 {
@@ -16,7 +17,8 @@ class AccountsController extends Controller
     {
         //
           
-        $accounts = Accounts::paginate(2);
+        $accounts = Accounts::paginate(10);
+       
         return view('Accounts.show')->with(compact('accounts'));
     }
 

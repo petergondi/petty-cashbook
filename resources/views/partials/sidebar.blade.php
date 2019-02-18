@@ -37,16 +37,16 @@
                         <li>
                             <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-table icon-wrap"></i> <span class="mini-click-non">Spendings</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Peity Charts" href="{{route('spendings.create')}}"><span class="mini-sub-pro">Add Daily Spending</span></a></li>
-                                <li><a title="Data Table" href="{{route('spendings.view')}}"><span class="mini-sub-pro">View Spendings</span></a></li>
+                            <li><a title="Peity Charts" href="{{route('spendings.create')}}"><span class="mini-sub-pro">Add Daily Expense</span></a></li>
+                                <li><a title="Data Table" href="{{route('spendings.view')}}"><span class="mini-sub-pro">View Expenditure</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-bar-chart icon-wrap"></i> <span class="mini-click-non">Reports</span></a>
+                            <a class="has-arrow" href="Reports" aria-expanded="false"><i class="icon nalika-bar-chart icon-wrap"></i> <span class="mini-click-non">Reports</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Bar Charts" href="bar-charts.html"><span class="mini-sub-pro">Daily Reports</span></a></li>
-                                <li><a title="Line Charts" href="line-charts.html"><span class="mini-sub-pro">Weekly Reports</span></a></li>
-                                <li><a title="Area Charts" href="area-charts.html"><span class="mini-sub-pro">Monthly Reports</span></a></li>
+                                <li><a title="Daily Reports" href="{{route('reports.create')}}"><span class="mini-sub-pro">Daily Reports</span></a></li>
+                                <li><a title="analytics" href="{{route('charts.display')}}"><span class="mini-sub-pro">Analytics</span></a></li>
+                                <li><a title="Area Charts" href=""><span class="mini-sub-pro">Monthly Reports</span></a></li>
                             </ul>
                         </li>
                         

@@ -39,14 +39,14 @@
                         <div class="income-dashone-pro">
                             <div class="income-rate-total">
                                 <div class="price-nalika-rate">
-                                    <h3><span>$</span><span class="counter">7500</span></h3>
+                                <h3><span>$</span><span class="counter">{{$total_topup}}</span></h3>
                                 </div>
                                 <div class="price-graph">
                                     <span id="sparkline1"></span>
                                 </div>
                             </div>
                             <div class="income-range">
-                                <p>Total income</p>
+                                <p>Total Top Up</p>
                                 <span class="income-percentange bg-green"><span class="counter">95</span>% <i class="fa fa-bolt"></i>
                                 </span>
                             </div>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="income-range order-cl">
-                                <p>New Orders</p>
+                                <p>Total Expenditure</p>
                                 <span class="income-percentange bg-red"><span class="counter">65</span>% <i class="fa fa-level-up"></i>
                                 </span>
                             </div>
@@ -101,9 +101,7 @@
                                 <div class="price-nalika-rate">
                                     <h3><span class="counter">235400</span></h3>
                                 </div>
-                                <div class="price-graph">
-                                    <span id="sparkline5"></span>
-                                </div>
+                                
                             </div>
                             <div class="income-range low-value-cl">
                                 <p>In first month</p>
@@ -119,71 +117,7 @@
     </div>
     <!-- income order visit user End -->
     <div class="dashtwo-order-area mg-tb-30">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="analytics-nalika-wrap ant-res-b-30 reso-mg-b-30">
-                        <div class="skill-content-3 analytics-nalika">
-                            <div class="skill">
-                                <div class="progress">
-                                    <div class="lead-content">
-                                        <h3><span class="counter">95</span>%</h3>
-                                        <p>Server down 4:32 pm</p>
-                                    </div>
-                                    <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s"> <span>95%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="analytics-nalika-wrap reso-mg-b-30">
-                        <div class="skill-content-3 analytics-nalika analytics-nalika4">
-                            <div class="skill">
-                                <div class="progress">
-                                    <div class="lead-content">
-                                        <h3>85%</h3>
-                                        <p>Server down 8:32 pm</p>
-                                    </div>
-                                    <div class="progress-bar wow fadeInLeft" data-progress="85%" style="width: 85%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>85%</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="analytics-nalika-wrap reso-mg-b-30 res-mg-t-30">
-                        <div class="skill-content-3 analytics-nalika analytics-nalika3">
-                            <div class="skill">
-                                <div class="progress progress-bt">
-                                    <div class="lead-content">
-                                        <h3>80%</h3>
-                                        <p>Server down 10:32 pm</p>
-                                    </div>
-                                    <div class="progress-bar wow fadeInLeft" data-progress="80%" style="width: 80%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>80%</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="analytics-nalika-wrap res-mg-t-30">
-                        <div class="skill-content-3 analytics-nalika analytics-nalika2">
-                            <div class="skill">
-                                <div class="progress progress-bt">
-                                    <div class="lead-content">
-                                        <h3>93%</h3>
-                                        <p>Server down 10:32 pm</p>
-                                    </div>
-                                    <div class="progress-bar wow fadeInLeft" data-progress="93%" style="width: 93%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>93%</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </div>
     <div class="analytics-sparkle-area">
         <div class="container-fluid">
@@ -191,7 +125,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="analytics-sparkle-line reso-mg-b-30">
                         <div class="analytics-content">
-                            <h5>Visits in last 24h</h5>
+                            <h5>Expense Last Week</h5>
                             <h2 class="counter">5600</h2>
                             <div id="sparkline22"></div>
                         </div>
@@ -200,7 +134,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="analytics-sparkle-line reso-mg-b-30">
                         <div class="analytics-content">
-                            <h5>Visits week</h5>
+                            <h5>Expense This week</h5>
                             <h2 class="counter">3400</h2>
                             <div id="sparkline23"></div>
                         </div>

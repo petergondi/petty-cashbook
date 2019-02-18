@@ -2,8 +2,8 @@
 @section('content')
     <!-- Content Header (Page header) --> 
     
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="{{asset('https://code.jquery.com/jquery-1.11.1.min.js')}}"></script>
+<script src="{{asset('https//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')}}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <br/><br/><br/>
@@ -54,54 +54,61 @@
                                     {!! Form::open(['action' => 'SpendingsController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                     {{ csrf_field() }}
                                       
-                                       <div class="container">
-                                            <table id="myTable" class=" table order-list">
-                                            <thead>
-                                                <tr>
+                                     
+                                            <table id="myTable" class="table table-condensed table-bordered table order-list">
+                                            
+                                                <tr >
                                                     <td>Expense</td>
                                                     <td>Purpose</td>
                                                     <td>Person Given</td>
+                                                     <td>VAT</td>
                                                     <td>Amount</td>
+                                                     <td>Action</td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
+                                          
+                                          
                                                 <tr>
-                                                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                                                                   
-                                                                        <select style="color:white;" class="form-control custom-select-value" name="account[]" required>
-                                                                            <option value="">select expense type</option> 
-                                                                            @foreach($expense_accounts as $expense_account)
-                                                                        <option value="{{$expense_account->account_name}}">{{$expense_account->account_name}}</option> 
-                                                                            @endforeach   
-                                                                            </select>
-                                                                 
-                                                                </td>
-                                                    <td class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                                   
+                                                        <select style="color:white;" class="form-control custom-select-value" name="account[]" required>
+                                                            <option value="">select expense type</option> 
+                                                            @foreach($expense_accounts as $expense_account)
+                                                        <option value="{{$expense_account->account_name}}">{{$expense_account->account_name}}</option> 
+                                                            @endforeach   
+                                                            </select>
+                                                 
+                                                </td>
+                                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                         <input type="text" name="purpose[]"  class="form-control" required/>
                                                     </td>
-                                                    <td class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                     <input type="text" name="person[]"   class="form-control" required/>
                                                     </td>
-                                                    <td class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                                           <div class="form-check">
+                                                     <input class="form-check-input " type="checkbox" value="" id="defaultCheck1">
+                                                       
+                                                     </div>
+                                                    </td>
+                                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                             <div class="input-group">
                                                         <input type="text" name="amount[]" id="qty" class="form-control" required/>
                                                         <span class="input-group-addon">.00</span>
                                                             </div>
                                                     </td>
-                                                    <td class="col-sm-2"><a class="deleteRow"></a>
-                                        
+                                                  <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12"><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>
+                                                    
                                                     </td>
                                                 </tr>
-                                            </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td colspan="5" style="text-align: left;">
-                                                        <input type="button" class="btn btn-lg btn-block bg-primary " id="addrow" value="Add Daily Expense" required/>
+                                                    <td colspan="6" style="text-align: left;">
+                                                        <input type="button" class="btn btn-lg btn-block bg-primary " id="addrow" value="Add New Expense" required/>
                                                     </td>
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                        </div>
+                                       
                                         <div class="form-group-inner">
                                             <div class="login-btn-inner">
                                                 <div class="row">
@@ -130,7 +137,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <script>
       
     
@@ -142,8 +149,8 @@ $(document).ready(function () {
         cols +='<td> <select style="color:white;" class="form-control custom-select-value"  name="account[]" required><option value="">select expense type</option> @foreach($expense_accounts as $expense_account)  <option value="{{$expense_account->account_name}}">{{$expense_account->account_name}}</option>@endforeach </select></td>';                                                                                                                                                                                                            
         cols += '<td><input type="text" class="form-control"name="purpose[]" required/></td>';
         cols += '<td><input type="text" class="form-control"  name="person[]" required/></td>';
+        cols +='<td> <div class="form-check"><input class="form-check-input " type="checkbox" value="" id="defaultCheck1"></div></td>';
         cols += '<td> <div class="input-group"><input type="text" class="form-control" id="qty" name="amount[]"/><span class="input-group-addon" required>.00</span></div></td>';
-
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
         $("table.order-list").append(newRow);
